@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
 
 #ifndef FUNCTIONS_H_
     #define FUNCTIONS_H_
