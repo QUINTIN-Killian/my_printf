@@ -51,5 +51,7 @@ char *my_strdup(char const *src);
 char **my_str_to_word_array(char const *str);
 int my_strlen_array(char **array);
 int my_intlen(int n);
+char *add_in_str(char *str);
+int is_elt_in_str(char *str, char elt);
 
 #endif

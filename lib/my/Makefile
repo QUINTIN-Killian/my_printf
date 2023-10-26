@@ -14,6 +14,8 @@ NAME	=	libmy.a
 
 H_NAME	=	my.h
 
+H_PRINTF_NAME	=	my_printf.h
+
 all:	libmy.a copy_header
 
 libmy.a:	create_lib copy_lib
@@ -25,7 +27,8 @@ copy_lib:
 	cp $(NAME) ../..
 
 copy_header:
-	cp my.h ../../include
+	cp $(H_NAME) ../../include
+	cp $(H_PRINTF_NAME) ../../include
 
 clean:
 	rm -f $(OBJ)
@@ -35,5 +38,6 @@ fclean:	clean
 
 aclean:	fclean
 	rm -f ../../include/$(H_NAME)
+	rm -f ../../include/$(H_PRINTF_NAME)
 
 re:	fclean all
