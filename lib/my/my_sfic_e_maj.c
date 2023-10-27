@@ -14,8 +14,8 @@ void my_e_maj_aux_fin(int x, int *count, int rep, int l)
 
     if ((rep != 0)) {
         while (rep < comp) {
-                rep *= 10;
-            }
+            rep *= 10;
+        }
         my_putnbr(rep + 1);
         *count += my_intlen(rep);
     }
@@ -23,11 +23,11 @@ void my_e_maj_aux_fin(int x, int *count, int rep, int l)
     my_putchar('+');
     if (x >= 10) {
         my_putnbr(x);
-        *count += (my_intlen(rep) + 2);
+        *count += (my_intlen(x) + 2);
     } else {
         my_putchar('0');
         my_putnbr(x);
-        *count += (my_intlen(rep) + 3);
+        *count += (my_intlen(x) + 3);
     }
 }
 

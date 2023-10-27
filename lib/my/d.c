@@ -15,7 +15,12 @@ int is_d(char c, va_list args, int *count, char *atribute_char)
 
     if (c == 'd') {
         nbr = va_arg(args, int);
-        if (nbr > 0 && is_elt_in_str(atribute_char, ' ')) {
+        if (nbr > 0 && is_elt_in_str(atribute_char, '+')) {
+            my_putchar('+');
+            *count = *count + 1;
+        }
+        if (nbr > 0 && is_elt_in_str(atribute_char, ' ') &&
+        !is_elt_in_str(atribute_char, '+')) {
             my_putchar(' ');
             *count = *count + 1;
         }

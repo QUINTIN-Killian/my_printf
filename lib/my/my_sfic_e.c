@@ -14,8 +14,8 @@ void my_e_aux_fin(int x, int *count, int rep, int l)
 
     if ((rep != 0)) {
         while (rep < comp) {
-                rep *= 10;
-            }
+            rep *= 10;
+        }
         my_putnbr(rep + 1);
         *count += my_intlen(rep);
     }
