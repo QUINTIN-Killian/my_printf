@@ -14,7 +14,7 @@ OBJECTIFS :
 #include "my.h"
 #include "my_printf.h"
 
-static void no_correct_flag_found(const char *restrict format,
+void no_correct_flag_found(const char *restrict format,
     int *ind, char *str, int *count)
 {
     if (is_elt_in_str(str, '#')) {
@@ -39,7 +39,7 @@ static void no_correct_flag_found(const char *restrict format,
     }
 }
 
-static char *get_atribute_char_flags(const char *restrict format,
+char *get_atribute_char_flags(const char *restrict format,
     int *ind, char *str)
 {
     char atribute_char;
@@ -56,7 +56,7 @@ static char *get_atribute_char_flags(const char *restrict format,
     return str;
 }
 
-static int get_flag(const char *restrict format, int *ind,
+int get_flag(const char *restrict format, int *ind,
     va_list args, int *count)
 /*
 writes '%' if it's not succeded by a correct flag and returns 0
@@ -81,7 +81,7 @@ or returns 1 if a correct flag is found
     return 1;
 }
 
-static int explore_format(const char *restrict format,
+int explore_format(const char *restrict format,
     va_list args, int *count)
 {
     int ind = 0;

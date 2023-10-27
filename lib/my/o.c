@@ -9,7 +9,7 @@
 #include "my.h"
 #include "my_printf.h"
 
-static int my_putoc(unsigned int nb, char *str, int x, int *count)
+int my_putoc(unsigned int nb, char *str, int x, int *count)
 {
     int o = nb % 8;
 
@@ -31,6 +31,10 @@ int is_o(char c, va_list args, int *count, char *atribute_char)
 
     if (c == 'o') {
         nbr = va_arg(args, unsigned int);
+        if (nbr != 0 && is_elt_in_str(atribute_char, '#')) {
+            my_putchar('0');
+            *count = *count + 1;
+        }
         my_putoc(nbr, str, 0, count);
     } else {
         return is_e(c, args, count, atribute_char);

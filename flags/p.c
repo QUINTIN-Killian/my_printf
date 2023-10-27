@@ -9,7 +9,7 @@
 #include "my.h"
 #include "my_printf.h"
 
-static void my_puthex_aux(int x, int y, char *str)
+void my_puthex_long_aux(unsigned long x, int y, char *str)
 {
     int o = x % 16;
 
@@ -29,13 +29,13 @@ static void my_puthex_aux(int x, int y, char *str)
         str[y] = (o + 48);
 }
 
-static void my_puthex(int x, int y, char *str, int *count)
+void my_puthex_long(unsigned long x, int y, char *str, int *count)
 {
-    my_puthex_aux(x, y, str);
+    my_puthex_long_aux(x, y, str);
     x = x / 16;
     *count = *count + 1;
     if (x > 0) {
-        my_puthex(x, (y + 1), str, count);
+        my_puthex_long(x, (y + 1), str, count);
     } else {
         my_putstr(my_revstr(str));
     }
@@ -43,14 +43,14 @@ static void my_puthex(int x, int y, char *str, int *count)
 
 int is_p(char c, va_list args, int *count, char *atribute_char)
 {
-    int memory_address;
-    char *str = malloc(sizeof(int));
+    unsigned long memory_address;
+    char *str = malloc(sizeof(unsigned long));
 
     if (c == 'p') {
-        memory_address = va_arg(args, int);
+        memory_address = va_arg(args, unsigned long);
         my_putstr("0x");
         *count = *count + 2;
-        my_puthex(memory_address, 0, str, count);
+        my_puthex_long(memory_address, 0, str, count);
     } else {
         return is_n(c, args, count, atribute_char);
     }

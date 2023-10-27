@@ -15,7 +15,7 @@ int is_u(char c, va_list args, int *count, char *atribute_char)
 
     if (c == 'u') {
         nbr = va_arg(args, unsigned int);
-        my_put_nbr(nbr);
+        my_putnbr(nbr);
         *count = *count + my_intlen(nbr);
     } else {
         return is_x(c, args, count, atribute_char);

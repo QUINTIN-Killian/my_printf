@@ -17,7 +17,7 @@
 
 void my_putchar(char c);
 int my_isneg(int nb);
-int my_put_nbr(int nb);
+int my_putnbr(int nb);
 void my_swap(int *a, int *b);
 int my_putstr(char const *str);
 int my_strlen(char const *str);
@@ -51,7 +51,12 @@ char *my_strdup(char const *src);
 char **my_str_to_word_array(char const *str);
 int my_strlen_array(char **array);
 int my_intlen(int n);
-char *add_in_str(char *str);
 int is_elt_in_str(char *str, char elt);
+int taille_l(int l);
+void my_putdou(double nbr, int *count, int l);
+void my_puthex(unsigned int x, int y, char *str, int *count);
+void my_puthex_maj(unsigned int x, int y, char *str, int *count);
+void my_sfic_e(double nbr, int *count, int l);
+void my_sfic_e_maj(double nbr, int *count, int l);
 
 #endif

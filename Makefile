@@ -17,10 +17,13 @@ SRC	=	my_printf.c	\
 		flags/x.c	\
 		flags/x_maj.c	\
 		flags/o.c	\
-		flags/e_e_maj.c	\
+		flags/e.c	\
+		flags/e_maj.c	\
 		flags/p.c	\
 		flags/n.c	\
 		flags/f_f_maj.c	\
+		flags/g_g_maj.c	\
+		flags/a.c	\
 		atribute_char/hashtag.c	\
 		atribute_char/zero.c	\
 		atribute_char/minus.c	\
