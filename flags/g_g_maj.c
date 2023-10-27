@@ -38,7 +38,7 @@ int is_g(char c, va_list args, int *count, char *atribute_char)
         }
         my_g(nbr, count, 0);
     } else {
-        return is_a(c, args, count, atribute_char);
+        return is_percent(c, args, count, atribute_char);
     }
     return 0;
 }

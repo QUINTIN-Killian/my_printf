@@ -31,7 +31,6 @@ int is_p(char c, va_list args, int *count, char *atribute_char);
 int is_n(char c, va_list args, int *count, char *atribute_char);
 int is_f(char c, va_list args, int *count, char *atribute_char);
 int is_g(char c, va_list args, int *count, char *atrinute_char);
-int is_a(char c, va_list args, int *count, char *atrinute_char);
 
 //atribute_char file :
 char is_hashtag(const char *restrict format, int *ind);
