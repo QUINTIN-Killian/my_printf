@@ -1,6 +1,0 @@
-printf(   "%          M%%%");
-printf(   "%          m%%%");
-printf(   "%          %%%");
-printf(   "%          ");
-printf(   "   %         ");
-printf(   "%s%% %z", "kk");
