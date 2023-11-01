@@ -26,24 +26,18 @@ void my_g(double nbr, int *count, int l)
     }
 }
 
-int is_g(char c, va_list args, int *count, char *atribute_char)
+int is_g(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
     double nbr;
+    char c = format[*ind];
 
     if (c == 'g' || c == 'G') {
         nbr = va_arg(args, double);
-        if (nbr > 0.0 && is_elt_in_str(atribute_char, '+')) {
-            my_putchar('+');
-            *count = *count + 1;
-        }
-        if (nbr > 0.0 && is_elt_in_str(atribute_char, ' ') &&
-        !is_elt_in_str(atribute_char, '+')) {
-            my_putchar(' ');
-            *count = *count + 1;
-        }
-        my_g(nbr, count, 0);
+        atribute_char_on_g_g_maj(format, ind, count, nbr);
+        my_g(nbr, count, 6);
     } else {
-        return is_percent(c, args, count, atribute_char);
+        return is_percent(format, ind, args, count);
     }
     return 0;
 }

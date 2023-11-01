@@ -6,55 +6,8 @@
 ** my_printf
 */
 
-/*
-OBJECTIFS :
-    - faire de la gestion d'erreur pour des '%' sans flag correct
-*/
-
 #include "my.h"
 #include "my_printf.h"
-
-void no_correct_flag_found(const char *restrict format,
-    int *ind, char *str, int *count)
-{
-    if (is_elt_in_str(str, '#')) {
-        my_putchar('#');
-        *count = *count + 1;
-    }
-    if (is_elt_in_str(str, ' ') && !is_elt_in_str(str, '+')) {
-        my_putchar(' ');
-        *count = *count + 1;
-    }
-    if (is_elt_in_str(str, '+')) {
-        my_putchar('+');
-        *count = *count + 1;
-    }
-    if (is_elt_in_str(str, '-')) {
-        my_putchar('-');
-        *count = *count + 1;
-    }
-    if (is_elt_in_str(str, '0') && !is_elt_in_str(str, '-')) {
-        my_putchar('0');
-        *count = *count + 1;
-    }
-}
-
-char *get_atribute_char_flags(const char *restrict format,
-    int *ind, char *str)
-{
-    char atribute_char;
-    int i = 0;
-
-    atribute_char = is_hashtag(format, ind);
-    while (atribute_char != 'n') {
-        if (!is_elt_in_str(str, atribute_char)) {
-            str[i] = atribute_char;
-            i++;
-        }
-        atribute_char = is_hashtag(format, ind);
-    }
-    return str;
-}
 
 int get_flag(const char *restrict format, int *ind,
     va_list args, int *count)
@@ -63,27 +16,22 @@ int get_flag(const char *restrict format, int *ind,
 
     if (*ind >= my_strlen(format))
         return -1;
-    get_atribute_char_flags(format, ind, str);
-    if (is_c(format[*ind], args, count, str) == -1) {
-        my_putchar('%');
-        *count = *count + 1;
-        no_correct_flag_found(format, ind, str, count);
-        if (*ind < my_strlen(format)) {
-            my_putchar(format[*ind]);
-        *count = *count + 1;
-    }
+    while (*ind < my_strlen(format) &&
+    (is_atribute_char(format[*ind]) || is_precision(format[*ind]) ||
+    is_length_modifier(format[*ind])))
+        *ind = *ind + 1;
+    if (is_c(format, ind, args, count) == -1) {
+        no_flag(format, ind, count);
         return 0;
     }
     return 1;
 }
 
-int explore_format(const char *restrict format,
-    va_list args, int *count)
+int explore_format(const char *restrict format, va_list args, int *count)
 {
-    int ind = 0;
     int ans_flag = 0;
 
-    while (ind < my_strlen(format)) {
+    for (int ind = 0; ind < my_strlen(format); ind++) {
         if (format[ind] == '%') {
             ind++;
             ans_flag = get_flag(format, &ind, args, count);
@@ -95,7 +43,6 @@ int explore_format(const char *restrict format,
             *count = -1;
             return -1;
         }
-        ind++;
     }
     return 0;
 }
@@ -105,8 +52,6 @@ int my_printf(const char *restrict format, ...)
     va_list args;
     int count = 0;
 
-    if (!is_right_typo(format))
-        return -1;
     va_start(args, format);
     explore_format(format, args, &count);
     va_end(args);

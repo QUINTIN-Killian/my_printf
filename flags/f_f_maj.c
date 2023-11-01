@@ -9,24 +9,18 @@
 #include "my.h"
 #include "my_printf.h"
 
-int is_f(char c, va_list args, int *count, char *atribute_char)
+int is_f(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
     double nbr;
+    char c = format[*ind];
 
     if (c == 'f' || c == 'F') {
         nbr = va_arg(args, double);
-        if (nbr > 0.0 && is_elt_in_str(atribute_char, '+')) {
-            my_putchar('+');
-            *count = *count + 1;
-        }
-        if (nbr > 0.0 && is_elt_in_str(atribute_char, ' ') &&
-        !is_elt_in_str(atribute_char, '+')) {
-            my_putchar(' ');
-            *count = *count + 1;
-        }
-        my_putdou(nbr, count, 0);
+        atribute_char_on_f_f_maj(format, ind, count, nbr);
+        my_putdou(nbr, count, 6);
     } else {
-        return is_g(c, args, count, atribute_char);
+        return is_g(format, ind, args, count);
     }
     return 0;
 }

@@ -9,12 +9,12 @@
 #include "my.h"
 #include "my_printf.h"
 
-char is_plus(const char *restrict format, int *ind)
+char is_plus(const char *restrict format, int my_ind)
 {
-    if (format[*ind] == '+') {
-        *ind = *ind + 1;
+    if (format[my_ind] == '+') {
+        return '+';
     } else {
         return 'n';
     }
-    return '+';
+    return 'x';
 }

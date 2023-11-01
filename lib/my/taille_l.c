@@ -12,7 +12,7 @@ int taille_l(int l)
 {
     int v = 1;
 
-    if (l == 0) {
+    if (l == 6) {
         return 100000;
     }
     for (int u = 0; u <= l; u++) {

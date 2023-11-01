@@ -9,15 +9,17 @@
 #include "my.h"
 #include "my_printf.h"
 
-int is_n(char c, va_list args, int *count, char *atribute_char)
+int is_n(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
     int *memory_address;
+    char c = format[*ind];
 
     if (c == 'n') {
         memory_address = va_arg(args, int *);
         *memory_address = *count;
     } else {
-        return is_f(c, args, count, atribute_char);
+        return is_f(format, ind, args, count);
     }
     return 0;
 }

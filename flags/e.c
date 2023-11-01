@@ -9,24 +9,18 @@
 #include "my.h"
 #include "my_printf.h"
 
-int is_e(char c, va_list args, int *count, char *atribute_char)
+int is_e(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
     double nbr;
+    char c = format[*ind];
 
     if (c == 'e') {
         nbr = va_arg(args, double);
-        if (nbr > 0.0 && is_elt_in_str(atribute_char, '+')) {
-            my_putchar('+');
-            *count = *count + 1;
-        }
-        if (nbr > 0.0 && is_elt_in_str(atribute_char, ' ') &&
-        !is_elt_in_str(atribute_char, '+')) {
-            my_putchar(' ');
-            *count = *count + 1;
-        }
-        my_sfic_e(nbr, count, 0);
+        atribute_char_on_e(format, ind, count, nbr);
+        my_sfic_e(nbr, count, 6);
     } else {
-        return is_e_maj(c, args, count, atribute_char);
+        return is_e_maj(format, ind, args, count);
     }
     return 0;
 }

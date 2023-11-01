@@ -9,12 +9,12 @@
 #include "my.h"
 #include "my_printf.h"
 
-char is_zero(const char *restrict format, int *ind)
+char is_zero(const char *restrict format, int my_ind)
 {
-    if (format[*ind] == '0') {
-        *ind = *ind + 1;
+    if (format[my_ind] == '0') {
+        return '0';
     } else {
-        return is_minus(format, ind);
+        return is_minus(format, my_ind);
     }
-    return '0';
+    return 'x';
 }

@@ -24,20 +24,26 @@ int my_putoc(unsigned int nb, char *str, int x, int *count)
     }
 }
 
-int is_o(char c, va_list args, int *count, char *atribute_char)
+int is_o(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
     unsigned int nbr;
-    char *str = malloc(sizeof(unsigned int));
+    char *str;
+    char c = format[*ind];
+    char length_modifier[3] = "nn\0";
 
     if (c == 'o') {
-        nbr = va_arg(args, unsigned int);
-        if (nbr != 0 && is_elt_in_str(atribute_char, '#')) {
-            my_putchar('0');
-            *count = *count + 1;
+        get_length_modifier(format, ind, length_modifier);
+        if (length_modifier[0] != 'n' && length_modifier[0] != 'L')
+            length_modifier_on_o(format, ind, args, count);
+        else {
+            str = malloc(sizeof(unsigned int));
+            nbr = va_arg(args, unsigned int);
+            atribute_char_on_o(format, ind, count, nbr);
+            my_putoc(nbr, str, 0, count);
         }
-        my_putoc(nbr, str, 0, count);
     } else {
-        return is_e(c, args, count, atribute_char);
+        return is_e(format, ind, args, count);
     }
     return 0;
 }

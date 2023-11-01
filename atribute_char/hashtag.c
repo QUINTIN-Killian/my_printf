@@ -9,12 +9,12 @@
 #include "my.h"
 #include "my_printf.h"
 
-char is_hashtag(const char *restrict format, int *ind)
+char is_hashtag(const char *restrict format, int my_ind)
 {
-    if (format[*ind] == '#') {
-        *ind = *ind + 1;
+    if (format[my_ind] == '#') {
+        return '#';
     } else {
-        return is_zero(format, ind);
+        return is_zero(format, my_ind);
     }
-    return '#';
+    return 'x';
 }

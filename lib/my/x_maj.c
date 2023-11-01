@@ -9,20 +9,26 @@
 #include "my.h"
 #include "my_printf.h"
 
-int is_x_maj(char c, va_list args, int *count, char *atribute_char)
+int is_x_maj(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
     unsigned int nbr;
-    char *str = malloc(sizeof(unsigned int));
+    char *str;
+    char c = format[*ind];
+    char length_modifier[3] = "nn\0";
 
     if (c == 'X') {
-        nbr = va_arg(args, unsigned int);
-        if (nbr != 0 && is_elt_in_str(atribute_char, '#')) {
-            my_putstr("0x");
-            *count = *count + 2;
+        get_length_modifier(format, ind, length_modifier);
+        if (length_modifier[0] != 'n' && length_modifier[0] != 'L')
+            length_modifier_on_x_maj(format, ind, args, count);
+        else {
+            str = malloc(sizeof(unsigned int));
+            nbr = va_arg(args, unsigned int);
+            atribute_char_on_x_maj(format, ind, count, nbr);
+            my_puthex_maj(nbr, 0, str, count);
         }
-        my_puthex_maj(nbr, 0, str, count);
     } else {
-        return is_o(c, args, count, atribute_char);
+        return is_o(format, ind, args, count);
     }
     return 0;
 }

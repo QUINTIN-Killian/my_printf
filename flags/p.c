@@ -41,10 +41,12 @@ void my_puthex_long(unsigned long x, int y, char *str, int *count)
     }
 }
 
-int is_p(char c, va_list args, int *count, char *atribute_char)
+int is_p(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
     unsigned long memory_address;
     char *str = malloc(sizeof(unsigned long));
+    char c = format[*ind];
 
     if (c == 'p') {
         memory_address = va_arg(args, unsigned long);
@@ -52,7 +54,7 @@ int is_p(char c, va_list args, int *count, char *atribute_char)
         *count = *count + 2;
         my_puthex_long(memory_address, 0, str, count);
     } else {
-        return is_n(c, args, count, atribute_char);
+        return is_n(format, ind, args, count);
     }
     return 0;
 }

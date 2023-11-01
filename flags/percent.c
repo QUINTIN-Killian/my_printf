@@ -9,8 +9,11 @@
 #include "my.h"
 #include "my_printf.h"
 
-int is_percent(char c, va_list args, int *count, char *atribute_char)
+int is_percent(const char *restrict format, int *ind,
+    va_list args, int *count)
 {
+    char c = format[*ind];
+
     if (c == '%') {
         my_putchar('%');
         *count = *count + 1;

@@ -36,8 +36,4 @@ clean:
 fclean:	clean
 	rm -f $(NAME) ../../$(NAME)
 
-aclean:	fclean
-	rm -f ../../include/$(H_NAME)
-	rm -f ../../include/$(H_PRINTF_NAME)
-
 re:	fclean all
