@@ -23,6 +23,7 @@ SRC	=	my_printf.c	\
 		flags/n.c	\
 		flags/f_f_maj.c	\
 		flags/g_g_maj.c	\
+		flags/b.c	\
 		atribute_char/is_atribute_char.c	\
 		atribute_char/hashtag.c	\
 		atribute_char/zero.c	\

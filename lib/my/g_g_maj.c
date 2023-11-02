@@ -37,7 +37,7 @@ int is_g(const char *restrict format, int *ind,
         atribute_char_on_g_g_maj(format, ind, count, nbr);
         my_g(nbr, count, 6);
     } else {
-        return is_percent(format, ind, args, count);
+        return is_b(format, ind, args, count);
     }
     return 0;
 }

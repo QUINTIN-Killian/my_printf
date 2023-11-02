@@ -48,6 +48,8 @@ int is_f(const char *restrict format, int *ind,
     va_list args, int *count);
 int is_g(const char *restrict format, int *ind,
     va_list args, int *count);
+int is_b(const char *restrict format, int *ind,
+    va_list args, int *count);
 
 //atribute_char file :
 int is_atribute_char(char c);
